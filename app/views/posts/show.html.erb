@@ -1,0 +1,20 @@
+<div class="col-xs-12 ">
+    <%= link_to 'Back', posts_path, class: 'btn btn-default pull-right' %>
+  </div>
+
+  <div class="col-xs-12">
+
+    <h2  class="page-header">Files name:<%= @post.title %></h2>
+
+      <div class="panel panel-default">
+        <div class="panel-heading"><h6 >Author: <%= @post.author %>, <%= @post.updated_at.strftime("on %m/%d/%Y") %></h6></div>
+        <div class="panel-body">
+        <p class="panel panel-body">content<%= @post.content %></p>
+
+
+      </div>
+      </div>
+
+
+    </div>
+</div>
