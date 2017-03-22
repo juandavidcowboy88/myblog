@@ -28,8 +28,14 @@ class User < ApplicationRecord
 # tener en cuenta esta función define estatus  con relación al
 #enum creado  (:blogger or admin )
   before_create :set_default_role
+  after_create :send_welcome_email
 
-  def set_default_role
-    self.role = :blogger
- end
+    def set_default_role
+      self.role = :blogger
+   end
+
+   def send_welcome_email
+    UserNotifierMailer.welcome_user(self).deliver_now
+   end
+
 end

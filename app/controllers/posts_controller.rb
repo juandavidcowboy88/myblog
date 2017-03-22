@@ -15,6 +15,15 @@ before_action :is_admin?, only: [ :new, :create, :edit, :update, :destroy ]
 #--------------------------------------------------------------
 
     if @post.save
+
+#--------------------------------------------------------------
+#send email for new post
+        @users = User.all
+        @users.each do |user|
+            UserNotifierMailer.new_post_mail(user,@post).deliver_now
+          end
+#.................................................................
+
       flash[:notice] = 'EL post ha sido creado con éxito'
       redirect_to posts_path
     else

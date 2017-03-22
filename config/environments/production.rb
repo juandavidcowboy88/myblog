@@ -1,5 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_option = { host = 'https://blog-makeit-juan.herokuapp.com/'}
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -83,4 +84,21 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  # To list ENVIRONMENT VARIABLES
+  # heroku config
+  # To add ENVIRONMENT VARIABLES
+  # heroku config:add SENGRID_USERNAME=mardiniii SENGRID_PASSWORD=holamama2017
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV["SENGRID_USERNAME"],
+    password: ENV["SENGRID_PASSWORD"],
+    domain: 'make-it-real-blog-sebas.herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+}
+
 end
