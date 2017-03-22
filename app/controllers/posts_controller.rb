@@ -13,17 +13,15 @@ before_action :is_admin?, only: [ :new, :create, :edit, :update, :destroy ]
   def create
     @post = Post.new(post_params)
 #--------------------------------------------------------------
-
+#condition =post save do ...
     if @post.save
-
 #--------------------------------------------------------------
 #send email for new post
         @users = User.all
         @users.each do |user|
             UserNotifierMailer.new_post_mail(user,@post).deliver_now
           end
-#.................................................................
-
+#...............................................................
       flash[:notice] = 'EL post ha sido creado con éxito'
       redirect_to posts_path
     else
@@ -33,22 +31,20 @@ before_action :is_admin?, only: [ :new, :create, :edit, :update, :destroy ]
 #-----------------------------------------
   end
 #-------------------------------------------------------------
+
   def edit
      @post = Post.find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
-
      if   @post.update(post_params)
       flash.notice = "Post '#{@post.title}' Updated!"
       redirect_to post_path(@post)
     else
       flash.alert = "sometihing it is not right with the post '#{@post}'"
     end
-
   end
-
   def destroy
     @post = Post.delete(params[:id])
      flash[:notice] = "the post #{@post} it is no longer avaliable."
