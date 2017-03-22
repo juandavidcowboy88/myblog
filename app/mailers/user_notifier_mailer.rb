@@ -18,8 +18,8 @@ class UserNotifierMailer < ApplicationMailer
   #   en.user_notifier_mailer.new_post_mail.subject
   #
     def new_post_mail
-    @user = user
-    @post = post
-    mail(to: @user.email, subject: 'Un nuevo post ha sido creado ')
+      @user = user
+      @post = post
+      mail(to: @user.email, subject: 'Un nuevo post ha sido creado ')
     end
 end
