@@ -5,7 +5,7 @@ class UserNotifierMailer < ApplicationMailer
   #
   #   en.user_notifier_mailer.welcome_user.subject
   #
-    def welcome_user
+    def welcome_user(user)
       @user = user
       @url = 'https://blog-makeit-juan.herokuapp.com/posts'
 
@@ -16,8 +16,7 @@ class UserNotifierMailer < ApplicationMailer
   # with the following lookup:
   #
   #   en.user_notifier_mailer.new_post_mail.subject
-  #
-    def new_post_mail
+      def new_post_mail(user, post)
       @user = user
       @post = post
       mail(to: @user.email, subject: 'Un nuevo post ha sido creado ')
