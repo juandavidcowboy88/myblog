@@ -3,14 +3,21 @@
   <head>
     <title>Blog</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
-  <div class="container"> <div class="margin"></div><%= yield %>  <div/>  
+
+    <%= render 'layouts/navbar' %>
+       <%= render 'layouts/alerts' %>
+
+         <%= yield %>
+         <script>
+    $(".alert").fadeIn(250).css("opacity","0.65").delay( 2500 ).slideUp( 2000 );
+      $('.alerts').on('click','.alert',function(){ $(this).remove() });
+      </script>
 
   </body>
 </html>
