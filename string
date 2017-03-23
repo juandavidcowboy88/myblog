@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20170323040552_add_omniauth_to_users.rb
